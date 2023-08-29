@@ -48,19 +48,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         Offstage(
           offstage: _selectedIndex != 1,
-          child: const EtcScreen(),
+          child: const EtcScreen("Search screen"),
         ),
         Offstage(
           offstage: _selectedIndex != 2,
-          child: const EtcScreen(),
+          child: const EtcScreen("Write screen"),
         ),
         Offstage(
           offstage: _selectedIndex != 3,
-          child: const EtcScreen(),
+          child: const EtcScreen("Like screen"),
         ),
         Offstage(
           offstage: _selectedIndex != 4,
-          child: const EtcScreen(),
+          child: const EtcScreen("Profile screen"),
         ),
       ]),
       bottomNavigationBar: Container(
