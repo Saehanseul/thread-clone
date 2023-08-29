@@ -6,8 +6,15 @@ import 'package:thread_clone/features/home/widgets/ProfileAdd.dart';
 import 'package:thread_clone/features/home/widgets/ProfileCircleImage.dart';
 
 class ThreadItem extends StatelessWidget {
+  final String contentText;
+  final List<String>? imageUrlList;
+  final String nickname;
+
   const ThreadItem({
     super.key,
+    required this.contentText,
+    this.imageUrlList,
+    required this.nickname,
   });
 
   @override
@@ -53,13 +60,14 @@ class ThreadItem extends StatelessWidget {
                   left: Sizes.size10,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          "pubity",
-                          style: TextStyle(
+                        Text(
+                          nickname,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: Sizes.size16,
                           ),
@@ -89,12 +97,52 @@ class ThreadItem extends StatelessWidget {
                       ],
                     ),
                     Gaps.v10,
-                    const Text(
-                      "Vine after seeing the Threads logo unveiled. Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled",
-                      style: TextStyle(
+                    Text(
+                      contentText,
+                      style: const TextStyle(
                         fontSize: Sizes.size16,
                       ),
                     ),
+                    if (imageUrlList != null && imageUrlList!.length == 1)
+                      Gaps.v16,
+                    if (imageUrlList != null && imageUrlList!.length == 1)
+                      Container(
+                        width: 300,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Sizes.size10),
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(imageUrlList![0]),
+                          ),
+                        ),
+                      ),
+                    if (imageUrlList != null && imageUrlList!.length > 1)
+                      Container(
+                        margin: const EdgeInsets.only(top: Sizes.size16),
+                        height: 200,
+                        child: ListView.builder(
+                            physics: const ClampingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: imageUrlList!.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: 250,
+                                height: 150,
+                                margin: const EdgeInsets.only(
+                                  right: Sizes.size10,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size10),
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(imageUrlList![index]),
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
                     Gaps.v16,
                     const Row(
                       children: [
