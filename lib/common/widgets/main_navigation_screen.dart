@@ -41,28 +41,30 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false, // 키보드 올라와도 리사이즈 되서 찌그러지는 것 방지
       backgroundColor: Colors.white,
-      body: Stack(children: [
-        Offstage(
-          offstage: _selectedIndex != 0,
-          child: const HomeScreen(),
-        ),
-        Offstage(
-          offstage: _selectedIndex != 1,
-          child: const EtcScreen("Search screen"),
-        ),
-        Offstage(
-          offstage: _selectedIndex != 2,
-          child: const EtcScreen("Write screen"),
-        ),
-        Offstage(
-          offstage: _selectedIndex != 3,
-          child: const EtcScreen("Like screen"),
-        ),
-        Offstage(
-          offstage: _selectedIndex != 4,
-          child: const EtcScreen("Profile screen"),
-        ),
-      ]),
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const HomeScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const EtcScreen("Search screen"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const EtcScreen("Write screen"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const EtcScreen("Like screen"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const EtcScreen("Profile screen"),
+          ),
+        ],
+      ),
       bottomNavigationBar: Container(
         color: Colors.amber,
         constraints: const BoxConstraints(maxWidth: Breakpoints.sm),

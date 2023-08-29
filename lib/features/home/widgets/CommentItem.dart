@@ -5,26 +5,24 @@ import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
 import 'package:thread_clone/features/home/widgets/ProfileAdd.dart';
-import 'package:thread_clone/features/home/widgets/ProfileCircleRoundImage.dart';
+import 'package:thread_clone/features/home/widgets/ProfileCircleImage.dart';
 
-class ThreadItem extends StatelessWidget {
-  final String contentText;
+class CommentItem extends StatelessWidget {
+  final String? contentText;
   final List<String>? imageUrlList;
   final String nickname;
   final int replayCount;
   final int likeCount;
   final String time;
-  final int commentProfileCount;
 
-  const ThreadItem({
+  const CommentItem({
     super.key,
-    required this.contentText,
+    this.contentText,
     this.imageUrlList,
     required this.nickname,
     required this.replayCount,
     required this.likeCount,
     required this.time,
-    this.commentProfileCount = 1,
   });
 
   @override
@@ -55,79 +53,10 @@ class ThreadItem extends StatelessWidget {
                       ),
                     ),
                     Gaps.v10,
-                    if (commentProfileCount == 1)
-                      Container(
-                        width: Sizes.size48,
-                        height: Sizes.size24,
-                        decoration: const BoxDecoration(),
-                        child: const Align(
-                          alignment: Alignment.bottomCenter,
-                          child: ProfileCircleRoundImage(
-                            url: "assets/images/profile_image1.jpeg",
-                            size: Sizes.size18,
-                          ),
-                        ),
-                      ),
-                    if (commentProfileCount == 2)
-                      Container(
-                        width: Sizes.size48,
-                        height: Sizes.size24,
-                        decoration: const BoxDecoration(),
-                        child: const Stack(
-                          children: [
-                            Positioned(
-                              bottom: 0,
-                              left: 5,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 20,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (commentProfileCount >= 3)
-                      Container(
-                        width: Sizes.size56,
-                        height: Sizes.size56,
-                        decoration: const BoxDecoration(),
-                        child: const Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size24,
-                              ),
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 0,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 20,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
+                    const ProfileCircleImage(
+                      url: "assets/images/profile_image1.jpeg",
+                      size: Sizes.size16,
+                    ),
                   ],
                 ),
               ),
@@ -177,13 +106,14 @@ class ThreadItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Gaps.v10,
-                    Text(
-                      contentText,
-                      style: const TextStyle(
-                        fontSize: Sizes.size16,
+                    if (contentText != null) Gaps.v10,
+                    if (contentText != null)
+                      Text(
+                        contentText!,
+                        style: const TextStyle(
+                          fontSize: Sizes.size16,
+                        ),
                       ),
-                    ),
                     if (imageUrlList != null && imageUrlList!.length == 1)
                       Gaps.v16,
                     if (imageUrlList != null && imageUrlList!.length == 1)

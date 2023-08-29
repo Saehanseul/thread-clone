@@ -33,6 +33,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     "Vine after seeing the Threads logo unveiled. Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled Vine after seeing the Threads logo unveiled",
                 imageUrlList: ["assets/images/image1.jpeg"],
                 nickname: "pubity",
+                replayCount: 10,
+                likeCount: 21,
+                time: "2m",
+                commentProfileCount: 2,
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(
@@ -48,6 +52,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   "assets/images/image4.jpeg",
                 ],
                 nickname: "timferriss",
+                replayCount: 3,
+                likeCount: 15,
+                time: "4m",
+                commentProfileCount: 3,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: Sizes.size16,
+                ),
+                child: Divider(),
+              ),
+              const ThreadItem(
+                contentText: "Drop a comment here to test things out.",
+                nickname: "tropicalseductions",
+                replayCount: 33,
+                likeCount: 152,
+                time: "1h",
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: Sizes.size16,
+                ),
+                child: Divider(),
+              ),
+              const ThreadItem(
+                contentText:
+                    "my phone feels like a vibrator with all these notifications rn",
+                nickname: "shityoushouldcareabout",
+                replayCount: 2,
+                likeCount: 8,
+                time: "2h",
               ),
               Gaps.v44,
             ],
