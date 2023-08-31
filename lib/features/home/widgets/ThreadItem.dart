@@ -27,6 +27,289 @@ class ThreadItem extends StatelessWidget {
     this.commentProfileCount = 1,
   });
 
+  /// onReportTap
+  /// 신고하기를 눌렀을 때
+  /// drag되는 showbottomSheet을 띄운다.
+  void _onReportTap(BuildContext context) {
+    Navigator.pop(context);
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(Sizes.size16),
+          topRight: Radius.circular(Sizes.size16),
+        ),
+      ),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          maxChildSize: 0.9,
+          initialChildSize: 0.6,
+          expand: false,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  expandedHeight: 230.0,
+                  pinned: true,
+                  floating: false,
+                  leading: null,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: Sizes.size10,
+                              ),
+                              child: Container(
+                                width: Sizes.size40,
+                                height: Sizes.size4,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade400,
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size2),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: Sizes.size16,
+                            ),
+                            child: Text(
+                              "Report",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: Sizes.size18,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey.shade400,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(
+                            top: Sizes.size16,
+                            left: Sizes.size16,
+                            right: Sizes.size16,
+                            bottom: Sizes.size10,
+                          ),
+                          child: Text(
+                            "Why are you reporting this thread?",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: Sizes.size16,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.size16,
+                          ),
+                          child: Text(
+                            "Your report is anonymous, except if you're reporting an intellectual property infringement. If someone is in immediate danger, call the local emergency services - don't wait.",
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: Sizes.size16,
+                            ),
+                          ),
+                        ),
+                        Gaps.v16,
+                      ],
+                    ),
+                  ),
+                ),
+                SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                  (context, index) => const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Divider(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                      ListTile(
+                        title: Text(
+                          "I just don't like it",
+                          style: TextStyle(),
+                        ),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          size: Sizes.size16,
+                        ),
+                      ),
+                      Divider(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                      ListTile(
+                        title: Text(
+                          "It's unlawful content under NetzDG",
+                          style: TextStyle(),
+                        ),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          size: Sizes.size16,
+                        ),
+                      ),
+                      Divider(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                      ListTile(
+                        title: Text(
+                          "It's spam",
+                          style: TextStyle(),
+                        ),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          size: Sizes.size16,
+                        ),
+                      ),
+                      Divider(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                      ListTile(
+                        title: Text(
+                          "Hate speech or symbols",
+                          style: TextStyle(),
+                        ),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          size: Sizes.size16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ))
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  /// bottomSheet을 여는 함수
+  void onOptionTap(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(Sizes.size16),
+          topRight: Radius.circular(Sizes.size16),
+        ),
+      ),
+      builder: (context) {
+        return SizedBox(
+          height: 350,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: Sizes.size16,
+              right: Sizes.size16,
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.size10,
+                      ),
+                      child: Container(
+                        width: Sizes.size40,
+                        height: Sizes.size4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(Sizes.size2),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(Sizes.size20),
+                  ),
+                  child: const Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          "Unfollow",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Divider(height: 1),
+                      ListTile(
+                        title: Text(
+                          "Mute",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Gaps.v16,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(Sizes.size20),
+                  ),
+                  child: Column(
+                    children: [
+                      const ListTile(
+                        title: Text(
+                          "Hide",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      const Divider(height: 1),
+                      GestureDetector(
+                        onTap: () => _onReportTap(context),
+                        child: const ListTile(
+                          title: Text(
+                            "Report",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,10 +453,13 @@ class ThreadItem extends StatelessWidget {
                           ),
                         ),
                         Gaps.h16,
-                        const FaIcon(
-                          FontAwesomeIcons.ellipsis,
-                          color: Colors.black,
-                          size: Sizes.size20,
+                        GestureDetector(
+                          onTap: () => onOptionTap(context),
+                          child: const FaIcon(
+                            FontAwesomeIcons.ellipsis,
+                            color: Colors.black,
+                            size: Sizes.size20,
+                          ),
                         ),
                       ],
                     ),
