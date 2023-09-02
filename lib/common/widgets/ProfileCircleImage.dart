@@ -4,16 +4,18 @@ import 'package:thread_clone/constants/sizes.dart';
 class ProfileCircleImage extends StatelessWidget {
   final String url;
   final double size;
+  final double margin;
   const ProfileCircleImage({
     super.key,
     required this.url,
     required this.size,
+    this.margin = Sizes.size5,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(Sizes.size5),
+      margin: EdgeInsets.all(margin),
       width: size,
       height: size,
       decoration: BoxDecoration(

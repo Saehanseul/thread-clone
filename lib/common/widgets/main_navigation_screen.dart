@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -5,9 +6,11 @@ import 'package:thread_clone/common/widgets/nav_tab.dart';
 import 'package:thread_clone/constants/breakpoints.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/activity/screens/activity_screen.dart';
 import 'package:thread_clone/features/etc/screens/etc_screen.dart';
 import 'package:thread_clone/features/home/screens/home_screen.dart';
-import 'package:thread_clone/features/home/widgets/ProfileCircleImage.dart';
+import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
+import 'package:thread_clone/features/search/screens/search_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   static const String routeName = "mainNavigation";
@@ -221,7 +224,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const EtcScreen("Search screen"),
+            child: const SearchScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 2,
@@ -229,12 +232,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 3,
-            child: const EtcScreen("Like screen"),
+            child: const ActivityScreen(),
           ),
           Offstage(
-            offstage: _selectedIndex != 4,
-            child: const EtcScreen("Profile screen"),
-          ),
+              offstage: _selectedIndex != 4,
+              child: const Column(
+                children: [CupertinoSearchTextField()],
+              )),
         ],
       ),
       bottomNavigationBar: Container(

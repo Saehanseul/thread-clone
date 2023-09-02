@@ -5,7 +5,7 @@ import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
 import 'package:thread_clone/features/home/widgets/ProfileAdd.dart';
-import 'package:thread_clone/features/home/widgets/ProfileCircleImage.dart';
+import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 
 class CommentItem extends StatelessWidget {
   final String? contentText;

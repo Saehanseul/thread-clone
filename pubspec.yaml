@@ -39,6 +39,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   flutter_riverpod: ^2.3.7
   provider: ^6.0.5
+  faker: ^2.1.0
 
 dev_dependencies:
   flutter_test:

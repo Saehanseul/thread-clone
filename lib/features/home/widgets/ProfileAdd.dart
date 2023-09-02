@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:thread_clone/constants/sizes.dart';
-import 'package:thread_clone/features/home/widgets/ProfileCircleImage.dart';
+import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 
 class ProfileAdd extends StatelessWidget {
   const ProfileAdd({
@@ -15,6 +15,7 @@ class ProfileAdd extends StatelessWidget {
         const ProfileCircleImage(
           url: 'assets/images/profile_image1.jpeg',
           size: Sizes.size44,
+          margin: Sizes.size1,
         ),
         Positioned(
           right: 0,
