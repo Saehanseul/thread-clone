@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
-import 'package:thread_clone/features/home/widgets/ProfileAdd.dart';
 import 'package:thread_clone/features/home/widgets/ProfileCircleRoundImage.dart';
-import 'package:thread_clone/utils.dart';
 
-class ThreadItem extends StatelessWidget {
+class ProfileThreadItem extends StatelessWidget {
   final String contentText;
   final List<String>? imageUrlList;
   final String nickname;
@@ -17,7 +16,7 @@ class ThreadItem extends StatelessWidget {
   final String time;
   final int commentProfileCount;
 
-  const ThreadItem({
+  const ProfileThreadItem({
     super.key,
     required this.contentText,
     this.imageUrlList,
@@ -327,91 +326,13 @@ class ThreadItem extends StatelessWidget {
               child: Container(
                 // cotainer A
                 // decoration: const BoxDecoration(color: Colors.green),
-                child: Column(
+                child: const Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const ProfileAdd(),
-                    Gaps.v10,
-                    Expanded(
-                      child: VerticalDivider(
-                        width: Sizes.size3,
-                        color: Colors.grey.shade700,
-                      ),
+                    ProfileCircleImage(
+                      url: "assets/images/profile_image1.jpeg",
+                      size: Sizes.size36,
                     ),
-                    Gaps.v10,
-                    if (commentProfileCount == 1)
-                      Container(
-                        width: Sizes.size48,
-                        height: Sizes.size24,
-                        decoration: const BoxDecoration(),
-                        child: const Align(
-                          alignment: Alignment.bottomCenter,
-                          child: ProfileCircleRoundImage(
-                            url: "assets/images/profile_image1.jpeg",
-                            size: Sizes.size18,
-                          ),
-                        ),
-                      ),
-                    if (commentProfileCount == 2)
-                      Container(
-                        width: Sizes.size48,
-                        height: Sizes.size24,
-                        decoration: const BoxDecoration(),
-                        child: const Stack(
-                          children: [
-                            Positioned(
-                              bottom: 0,
-                              left: 5,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 20,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (commentProfileCount >= 3)
-                      Container(
-                        width: Sizes.size56,
-                        height: Sizes.size56,
-                        decoration: const BoxDecoration(),
-                        child: const Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size24,
-                              ),
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 0,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size18,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 20,
-                              child: ProfileCircleRoundImage(
-                                url: "assets/images/profile_image1.jpeg",
-                                size: Sizes.size14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
                   ],
                 ),
               ),
@@ -456,11 +377,9 @@ class ThreadItem extends StatelessWidget {
                         Gaps.h16,
                         GestureDetector(
                           onTap: () => onOptionTap(context),
-                          child: FaIcon(
+                          child: const FaIcon(
                             FontAwesomeIcons.ellipsis,
-                            color: isDarkMode(context)
-                                ? Colors.white
-                                : Colors.black,
+                            color: Colors.black,
                             size: Sizes.size20,
                           ),
                         ),
@@ -514,34 +433,26 @@ class ThreadItem extends StatelessWidget {
                             }),
                       ),
                     Gaps.v16,
-                    Row(
+                    const Row(
                       children: [
                         FaIcon(
                           FontAwesomeIcons.heart,
                           size: Sizes.size20,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.comment,
                           size: Sizes.size20,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.rotate,
                           size: Sizes.size20,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.paperPlane,
                           size: Sizes.size20,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                       ],
                     ),

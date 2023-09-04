@@ -8,8 +8,10 @@ import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/activity/screens/activity_screen.dart';
 import 'package:thread_clone/features/etc/screens/etc_screen.dart';
+import 'package:thread_clone/features/home/screens/comment_screen.dart';
 import 'package:thread_clone/features/home/screens/home_screen.dart';
 import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
+import 'package:thread_clone/features/profile/screens/profile_screen.dart';
 import 'package:thread_clone/features/search/screens/search_screen.dart';
 import 'package:thread_clone/utils.dart';
 
@@ -230,18 +232,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             child: const SearchScreen(),
           ),
           Offstage(
-            offstage: _selectedIndex != 2,
-            child: const EtcScreen("Write screen"),
-          ),
-          Offstage(
             offstage: _selectedIndex != 3,
-            child: const ActivityScreen(),
+            // child: const ActivityScreen(),
+            child: const CommentScreen(),
           ),
-          Offstage(
-              offstage: _selectedIndex != 4,
-              child: const Column(
-                children: [CupertinoSearchTextField()],
-              )),
+          Offstage(offstage: _selectedIndex != 4, child: const ProfileScreen()),
         ],
       ),
       bottomNavigationBar: Container(

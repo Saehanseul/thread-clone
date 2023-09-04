@@ -29,7 +29,7 @@ class _CommentScreenState extends ConsumerState<CommentScreen> {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leadingWidth: 65,
+        leadingWidth: 70,
         leading: GestureDetector(
           onTap: () => context.pop(),
           child: Container(
@@ -47,7 +47,7 @@ class _CommentScreenState extends ConsumerState<CommentScreen> {
                   size: Sizes.size16,
                 ),
                 Text(
-                  "뒤로",
+                  "Back",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: Sizes.size16,
