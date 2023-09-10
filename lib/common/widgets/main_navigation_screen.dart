@@ -11,6 +11,7 @@ import 'package:thread_clone/features/etc/screens/etc_screen.dart';
 import 'package:thread_clone/features/home/screens/home_screen.dart';
 import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 import 'package:thread_clone/features/search/screens/search_screen.dart';
+import 'package:thread_clone/utils.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   static const String routeName = "mainNavigation";
@@ -215,7 +216,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false, // 키보드 올라와도 리사이즈 되서 찌그러지는 것 방지
-      backgroundColor: Colors.white,
+      backgroundColor: _selectedIndex == 0 || isDarkMode(context)
+          ? Colors.black
+          : Colors.white,
       body: Stack(
         children: [
           Offstage(
@@ -245,7 +248,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         color: Colors.amber,
         constraints: const BoxConstraints(maxWidth: Breakpoints.sm),
         child: BottomAppBar(
-          color: Colors.white,
+          color: isDarkMode(context) ? Colors.black : Colors.white,
           child: Padding(
             padding: const EdgeInsetsDirectional.all(Sizes.size12),
             child: Row(

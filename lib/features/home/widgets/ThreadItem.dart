@@ -6,6 +6,7 @@ import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
 import 'package:thread_clone/features/home/widgets/ProfileAdd.dart';
 import 'package:thread_clone/features/home/widgets/ProfileCircleRoundImage.dart';
+import 'package:thread_clone/utils.dart';
 
 class ThreadItem extends StatelessWidget {
   final String contentText;
@@ -455,9 +456,11 @@ class ThreadItem extends StatelessWidget {
                         Gaps.h16,
                         GestureDetector(
                           onTap: () => onOptionTap(context),
-                          child: const FaIcon(
+                          child: FaIcon(
                             FontAwesomeIcons.ellipsis,
-                            color: Colors.black,
+                            color: isDarkMode(context)
+                                ? Colors.white
+                                : Colors.black,
                             size: Sizes.size20,
                           ),
                         ),
@@ -511,26 +514,34 @@ class ThreadItem extends StatelessWidget {
                             }),
                       ),
                     Gaps.v16,
-                    const Row(
+                    Row(
                       children: [
                         FaIcon(
                           FontAwesomeIcons.heart,
                           size: Sizes.size20,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.comment,
                           size: Sizes.size20,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.rotate,
                           size: Sizes.size20,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                         Gaps.h20,
                         FaIcon(
                           FontAwesomeIcons.paperPlane,
                           size: Sizes.size20,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                         ),
                       ],
                     ),

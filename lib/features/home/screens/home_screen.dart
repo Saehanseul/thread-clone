@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/widgets/ThreadItem.dart';
+import 'package:thread_clone/utils.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -26,6 +27,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 child: Image.asset(
                   "assets/images/logo.png",
                   width: Sizes.size64,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                 ),
               ),
               const ThreadItem(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/utils.dart';
 
 class TabItem extends StatelessWidget {
   final String title;
@@ -19,7 +20,11 @@ class TabItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: Sizes.size1,
-          color: isActive ? Colors.black : Colors.grey,
+          color: isActive
+              ? isDarkMode(context)
+                  ? Colors.white
+                  : Colors.black
+              : Colors.grey,
         ),
         borderRadius: BorderRadius.circular(
           Sizes.size8,
