@@ -84,7 +84,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
           ListTile(
-            onTap: () => context.push(PrivacyScreen.routeURL),
+            onTap: () => context.go(PrivacyScreen.routeURL),
             title: const Text("Privacy"),
             leading: FaIcon(
               FontAwesomeIcons.lock,

@@ -3,11 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/widgets/nav_tab.dart';
 import 'package:thread_clone/constants/breakpoints.dart';
-import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
 import 'package:thread_clone/features/home/screens/home_screen.dart';
-import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 import 'package:thread_clone/features/post/views/widgets/post_thread.dart';
 import 'package:thread_clone/features/profile/screens/profile_screen.dart';
 import 'package:thread_clone/features/search/screens/search_screen.dart';
@@ -26,10 +24,10 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final List<String> _tabs = [
-    "home",
-    "discover",
+    "",
+    "search",
     "write",
-    "heart",
+    "activity",
     "profile",
   ];
 
@@ -89,7 +87,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 NavTab(
-                  text: "Home",
+                  text: "",
                   icon: FontAwesomeIcons.house,
                   selectedIcon: FontAwesomeIcons.house,
                   isSelected: _selectedIndex == 0,
@@ -97,7 +95,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   selectedIndex: _selectedIndex,
                 ),
                 NavTab(
-                  text: "Discover",
+                  text: "Search",
                   icon: FontAwesomeIcons.magnifyingGlass,
                   selectedIcon: FontAwesomeIcons.magnifyingGlass,
                   isSelected: _selectedIndex == 1,
@@ -105,7 +103,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   selectedIndex: _selectedIndex,
                 ),
                 NavTab(
-                  text: "write",
+                  text: "Write",
                   icon: FontAwesomeIcons.penToSquare,
                   selectedIcon: FontAwesomeIcons.penToSquare,
                   isSelected: _selectedIndex == 2,
@@ -113,7 +111,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   selectedIndex: _selectedIndex,
                 ),
                 NavTab(
-                  text: "heart",
+                  text: "Activity",
                   icon: FontAwesomeIcons.heart,
                   selectedIcon: FontAwesomeIcons.solidHeart,
                   isSelected: _selectedIndex == 3,

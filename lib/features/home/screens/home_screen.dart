@@ -6,6 +6,7 @@ import 'package:thread_clone/features/home/widgets/ThreadItem.dart';
 import 'package:thread_clone/utils.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
+  static const String routeURL = "/";
   const HomeScreen({super.key});
 
   @override

@@ -9,10 +9,10 @@ import 'package:thread_clone/features/settings/screens/settings_screen.dart';
 final routerProvider = Provider(
   (ref) {
     return GoRouter(
-      initialLocation: "/home",
+      initialLocation: "/",
       routes: [
         GoRoute(
-          path: "/:tab(home|discover|write|heart|profile)",
+          path: "/:tab(|search|write|activity|profile)",
           builder: (context, state) {
             final tab = state.pathParameters['tab']!;
             return MainNavigationScreen(tab: tab);

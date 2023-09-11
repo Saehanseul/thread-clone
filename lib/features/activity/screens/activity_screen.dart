@@ -6,6 +6,7 @@ import 'package:thread_clone/features/activity/widgets/activity_item.dart';
 import 'package:thread_clone/features/activity/widgets/tab_item.dart';
 
 class ActivityScreen extends ConsumerStatefulWidget {
+  static const String routeURL = "/activity";
   const ActivityScreen({super.key});
 
   @override

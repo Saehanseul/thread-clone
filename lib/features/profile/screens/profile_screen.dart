@@ -11,6 +11,7 @@ import 'package:thread_clone/features/profile/widgets/profile_thread_item.dart';
 import 'package:thread_clone/features/settings/screens/settings_screen.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
+  static const String routeURL = "/profile";
   const ProfileScreen({super.key});
 
   @override
@@ -45,7 +46,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () => context.push(SettingsScreen.routeURL),
+                      onPressed: () => context.go(SettingsScreen.routeURL),
                       icon: const FaIcon(
                         FontAwesomeIcons.bars,
                         color: Colors.black,

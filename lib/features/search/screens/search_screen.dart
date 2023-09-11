@@ -7,6 +7,7 @@ import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
+  static const String routeURL = "/search";
   const SearchScreen({super.key});
 
   @override
