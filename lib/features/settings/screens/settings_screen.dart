@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/settings/screens/privacy_screen.dart';
+import 'package:thread_clone/features/settings/view_models/dark_mode_view_model.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   static const String routeURL = "/settings";
@@ -20,10 +22,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Settings",
           style: TextStyle(
-            color: Colors.black,
+            color: ref.watch(darkModeProvider).isDarkMode
+                ? Colors.white
+                : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -37,19 +41,23 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             padding: const EdgeInsets.only(
               left: Sizes.size20,
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 FaIcon(
                   FontAwesomeIcons.chevronLeft,
-                  color: Colors.black,
+                  color: ref.watch(darkModeProvider).isDarkMode
+                      ? Colors.white
+                      : Colors.black,
                   size: Sizes.size16,
                 ),
                 Text(
                   "Back",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: ref.watch(darkModeProvider).isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                     fontSize: Sizes.size16,
                   ),
                 ),
@@ -67,11 +75,31 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       ),
       body: ListView(
         children: [
+          SwitchListTile.adaptive(
+            title: Row(
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.lightbulb,
+                  color: ref.watch(darkModeProvider).isDarkMode
+                      ? Colors.white
+                      : Colors.grey.shade800,
+                ),
+                Gaps.h28,
+                const Text("Dark mode"),
+              ],
+            ),
+            value: ref.watch(darkModeProvider).isDarkMode,
+            onChanged: (value) {
+              ref.read(darkModeProvider.notifier).toggleDarkMode();
+            },
+          ),
           ListTile(
             title: const Text("Follow and invite friends"),
             leading: FaIcon(
               FontAwesomeIcons.userPlus,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
@@ -79,16 +107,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             title: const Text("Notifications"),
             leading: FaIcon(
               FontAwesomeIcons.bell,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
           ListTile(
-            onTap: () => context.go(PrivacyScreen.routeURL),
+            onTap: () => context.push(PrivacyScreen.routeURL),
             title: const Text("Privacy"),
             leading: FaIcon(
               FontAwesomeIcons.lock,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
@@ -96,7 +128,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             title: const Text("Account"),
             leading: FaIcon(
               FontAwesomeIcons.circleUser,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
@@ -104,7 +138,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             title: const Text("Help"),
             leading: FaIcon(
               FontAwesomeIcons.circleQuestion,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),
@@ -112,7 +148,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             title: const Text("About"),
             leading: FaIcon(
               FontAwesomeIcons.circleInfo,
-              color: Colors.grey.shade800,
+              color: ref.watch(darkModeProvider).isDarkMode
+                  ? Colors.white
+                  : Colors.grey.shade800,
             ),
             minLeadingWidth: Sizes.size28 + Sizes.size2,
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/settings/view_models/dark_mode_view_model.dart';
 import 'package:thread_clone/router.dart';
 
 void main() {
@@ -15,6 +16,9 @@ class ThreadApp extends ConsumerWidget {
     return MaterialApp.router(
       routerConfig: ref.watch(routerProvider),
       title: "Thread clone",
+      themeMode: ref.watch(darkModeProvider).isDarkMode
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
