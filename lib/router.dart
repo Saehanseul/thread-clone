@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/widgets/main_navigation_screen.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
+import 'package:thread_clone/features/login/auth.repo.dart';
 import 'package:thread_clone/features/post/views/screens/take_picker_screen.dart';
 import 'package:thread_clone/features/settings/screens/privacy_screen.dart';
 import 'package:thread_clone/features/settings/screens/settings_screen.dart';
@@ -10,6 +11,13 @@ final routerProvider = Provider(
   (ref) {
     return GoRouter(
       initialLocation: "/",
+      redirect: (context, state) {
+        final isLoggedIn = ref.watch(authRepo).isLoggedIn;
+        if (!isLoggedIn) {
+          return ("/");
+        }
+        return ("/login");
+      },
       routes: [
         GoRoute(
           path: "/:tab(|search|write|activity|profile)",
