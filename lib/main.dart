@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/constants/sizes.dart';
 import 'package:thread_clone/features/settings/view_models/dark_mode_view_model.dart';
 import 'package:thread_clone/router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // 앱 시작전에 초기화
+  await Firebase.initializeApp();
+
   runApp(const ProviderScope(child: ThreadApp()));
 }
 

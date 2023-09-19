@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/post/view_models/post_view_model.dart';
 
 class PostThread extends ConsumerStatefulWidget {
   const PostThread({super.key});
@@ -19,6 +20,7 @@ class PostThread extends ConsumerStatefulWidget {
 class _PostThreadState extends ConsumerState<PostThread> {
   String text = '';
   String? imagePath;
+  XFile? xfile;
 
   @override
   Widget build(BuildContext context) {
@@ -143,6 +145,7 @@ class _PostThreadState extends ConsumerState<PostThread> {
                                     if (res != null) {
                                       setState(() {
                                         imagePath = res.path;
+                                        xfile = res;
                                       });
                                     }
                                   },
@@ -211,14 +214,32 @@ class _PostThreadState extends ConsumerState<PostThread> {
                             ),
                           ),
                           const Spacer(),
-                          Text(
-                            "Post",
-                            style: TextStyle(
-                              color: text.isNotEmpty
-                                  ? Colors.blue
-                                  : Colors.blue.shade200,
-                              fontWeight: FontWeight.bold,
-                              fontSize: Sizes.size16,
+                          GestureDetector(
+                            onTap: () {
+                              if (text.isNotEmpty) {
+                                context.pop();
+                              }
+
+                              late final File? file;
+
+                              if (xfile != null) {
+                                file = File(xfile!.path);
+                              } else {
+                                file = null;
+                              }
+                              ref
+                                  .read(postProvider.notifier)
+                                  .postUpload(text, file);
+                            },
+                            child: Text(
+                              "Post",
+                              style: TextStyle(
+                                color: text.isNotEmpty
+                                    ? Colors.blue
+                                    : Colors.blue.shade200,
+                                fontWeight: FontWeight.bold,
+                                fontSize: Sizes.size16,
+                              ),
                             ),
                           )
                         ],

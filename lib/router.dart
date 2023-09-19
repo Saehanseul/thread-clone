@@ -2,7 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/common/widgets/main_navigation_screen.dart';
 import 'package:thread_clone/features/home/screens/comment_screen.dart';
-import 'package:thread_clone/features/login/auth.repo.dart';
+import 'package:thread_clone/features/login/repos/auth_repo.dart';
+import 'package:thread_clone/features/login/screens/login_screen.dart';
+import 'package:thread_clone/features/login/screens/signup_screen.dart';
 import 'package:thread_clone/features/post/views/screens/take_picker_screen.dart';
 import 'package:thread_clone/features/settings/screens/privacy_screen.dart';
 import 'package:thread_clone/features/settings/screens/settings_screen.dart';
@@ -13,10 +15,15 @@ final routerProvider = Provider(
       initialLocation: "/",
       redirect: (context, state) {
         final isLoggedIn = ref.watch(authRepo).isLoggedIn;
+        print("isLoggedIn: $isLoggedIn");
+        print("state matchedLocation: ${state.matchedLocation}");
         if (!isLoggedIn) {
-          return ("/");
+          if (state.matchedLocation != SignUpScreen.routeURL &&
+              state.matchedLocation != LoginScreen.routeURL) {
+            return SignUpScreen.routeURL;
+          }
         }
-        return ("/login");
+        return null;
       },
       routes: [
         GoRoute(
@@ -32,7 +39,11 @@ final routerProvider = Provider(
         ),
         GoRoute(
           path: SettingsScreen.routeURL,
-          builder: (context, state) => const SettingsScreen(),
+          builder: (context, state) {
+            print('context: $context');
+            print('state: $state');
+            return const SettingsScreen();
+          },
         ),
         GoRoute(
           path: PrivacyScreen.routeURL,
@@ -41,6 +52,14 @@ final routerProvider = Provider(
         GoRoute(
           path: TakePictureScreen.routeURL,
           builder: (context, state) => const TakePictureScreen(),
+        ),
+        GoRoute(
+          path: LoginScreen.routeURL,
+          builder: (context, state) => const LoginScreen(),
+        ),
+        GoRoute(
+          path: SignUpScreen.routeURL,
+          builder: (context, state) => const SignUpScreen(),
         )
       ],
     );

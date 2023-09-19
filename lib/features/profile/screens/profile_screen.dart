@@ -46,7 +46,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () => context.push(SettingsScreen.routeURL),
+                      onPressed: () {
+                        print('button');
+                        context.push(SettingsScreen.routeURL);
+                      },
                       icon: const FaIcon(
                         FontAwesomeIcons.bars,
                         color: Colors.black,

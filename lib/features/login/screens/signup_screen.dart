@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thread_clone/features/login/screens/signup_screen.dart';
+import 'package:thread_clone/features/login/screens/login_screen.dart';
 import 'package:thread_clone/features/login/view_models/signup_view_model.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  static const String routeURL = "/login";
-  const LoginScreen({super.key});
+class SignUpScreen extends ConsumerStatefulWidget {
+  static const String routeURL = "/signup";
+  const SignUpScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   @override
   Widgetbuild(BuildContext context) {
     return Container();
@@ -30,7 +30,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
             onChanged: (value) {
               final state = ref.read(signUpForm.notifier).state;
-              ref.read(signInForm.notifier).state = {...state, "email": value};
+              ref.read(signUpForm.notifier).state = {...state, "email": value};
             },
           ),
           TextField(
@@ -38,26 +38,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               hintText: "Password",
             ),
             onChanged: (value) {
-              final state = ref.read(signInForm.notifier).state;
-              ref.read(signInForm.notifier).state = {
+              final state = ref.read(signUpForm.notifier).state;
+              ref.read(signUpForm.notifier).state = {
                 ...state,
-                "password": value,
+                "password": value
               };
             },
           ),
           ElevatedButton(
             onPressed: () {
-              print('onPressed');
-              ref.read(signUpProvider.notifier).signIn(context);
+              ref.read(signUpProvider.notifier).signUp(context);
             },
-            child: const Text("Login"),
+            child: const Text("signup"),
           ),
           GestureDetector(
             onTap: () {
-              context.go(SignUpScreen.routeURL);
+              context.go(LoginScreen.routeURL);
             },
-            child: const Text("Sign up"),
-          )
+            child: const Text("Log In"),
+          ),
         ],
       ),
     );

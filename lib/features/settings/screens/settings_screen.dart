@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/login/view_models/signup_view_model.dart';
 import 'package:thread_clone/features/settings/screens/privacy_screen.dart';
 import 'package:thread_clone/features/settings/view_models/dark_mode_view_model.dart';
 
@@ -174,7 +175,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   ),
                   CupertinoDialogAction(
                     child: const Text('Log out'),
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(signUpProvider.notifier).signOut(context);
+                    },
                   ),
                 ],
               ),
