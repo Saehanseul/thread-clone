@@ -13,11 +13,17 @@ class PostRepo {
     File? file,
   }) async {
     final fileRef = _storage.ref().child("images/${DateTime.now()}");
-    final uploadTask = await fileRef.putFile(file!);
+    late final TaskSnapshot? uploadTask;
+    try {
+      uploadTask = await fileRef.putFile(file!);
+    } catch (e) {
+      print("Error: $e");
+      uploadTask = null;
+    }
 
     late final String? imageUrl;
 
-    if (uploadTask.state == TaskState.success) {
+    if (uploadTask != null && uploadTask.state == TaskState.success) {
       imageUrl =
           "https://firebasestorage.googleapis.com/v0/b/thread-practice.appspot.com/o/images%2F${uploadTask.ref.name}?alt=media";
     } else {

@@ -483,7 +483,7 @@ class ThreadItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(Sizes.size10),
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage(imageUrlList![0]),
+                            image: NetworkImage(imageUrlList![0]),
                           ),
                         ),
                       ),

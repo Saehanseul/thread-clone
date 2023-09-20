@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/home/widgets/ThreadItem.dart';
 import 'package:thread_clone/features/post/view_models/timeline_view_model.dart';
 import 'package:thread_clone/utils.dart';
 
@@ -34,7 +35,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ref.watch(timelineProvider).when(
                     data: (data) {
                       return Column(
-                        children: data.map((e) => Text(e.text)).toList(),
+                        children: data.map((post) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size16,
+                            ),
+                            child: ThreadItem(
+                              contentText: post.text,
+                              nickname: "Anony",
+                              replayCount: 2,
+                              likeCount: 3,
+                              time: '2m',
+                              commentProfileCount: 2,
+                              imageUrlList:
+                                  post.imageUrl != null ? [post.imageUrl!] : [],
+                            ),
+                          );
+                        }).toList(),
                       );
                     },
                     loading: () => const CircularProgressIndicator(),

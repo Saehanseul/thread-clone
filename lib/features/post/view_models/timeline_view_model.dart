@@ -20,8 +20,15 @@ class TimelineViewModel extends AsyncNotifier<List<PostModel>> {
     _postRepo = ref.read(postRepo);
 
     _posts = await _getPosts();
-    print("_posts: _posts");
     return _posts;
+  }
+
+  FutureOr<void> refresh() async {
+    state = const AsyncValue.loading();
+    await AsyncValue.guard(() async {
+      _posts = await _getPosts();
+      state = AsyncValue.data(_posts);
+    });
   }
 }
 
