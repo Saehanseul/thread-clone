@@ -8,19 +8,19 @@ class TimelineViewModel extends AsyncNotifier<List<PostModel>> {
   late final PostRepo _postRepo;
   List<PostModel> _posts = [];
 
-  Future<List<PostModel>> _getPosts() async {
-    final results = await _postRepo.getPosts();
-    final posts =
-        results.docs.map((doc) => PostModel.fromJson(doc.data())).toList();
-    return posts;
-  }
-
   @override
   FutureOr<List<PostModel>> build() async {
     _postRepo = ref.read(postRepo);
 
     _posts = await _getPosts();
     return _posts;
+  }
+
+  Future<List<PostModel>> _getPosts() async {
+    final results = await _postRepo.getPosts();
+    final posts =
+        results.docs.map((doc) => PostModel.fromJson(doc.data())).toList();
+    return posts;
   }
 
   FutureOr<void> refresh() async {

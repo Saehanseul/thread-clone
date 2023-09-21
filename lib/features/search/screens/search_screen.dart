@@ -1,10 +1,10 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread_clone/common/widgets/ProfileCircleImage.dart';
 import 'package:thread_clone/constants/gaps.dart';
 import 'package:thread_clone/constants/sizes.dart';
+import 'package:thread_clone/features/search/view_models/search_view_model.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   static const String routeURL = "/search";
@@ -15,65 +15,75 @@ class SearchScreen extends ConsumerStatefulWidget {
 }
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         bottom: false,
-        child: SearchItem(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gaps.v16,
+            const Padding(
+              padding: EdgeInsets.only(
+                left: Sizes.size16,
+              ),
+              child: Text(
+                'Search',
+                style: TextStyle(
+                  fontSize: Sizes.size32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(
+                Sizes.size16,
+              ),
+              child: CupertinoSearchTextField(
+                controller: _searchController,
+                placeholder: 'Search',
+                onSubmitted: (value) {
+                  ref.read(searchProvider.notifier).searchUser(query: value);
+                },
+                onSuffixTap: () {
+                  print("onSuffic Tap");
+                  ref.read(searchProvider.notifier).searchUser();
+                  _searchController.clear();
+                },
+              ),
+            ),
+            ref.watch(searchProvider).when(
+                  data: (data) {
+                    return Column(
+                      children: data.map((user) {
+                        return Test(
+                          title: user.name,
+                          description: user.description,
+                        );
+                      }).toList(),
+                    );
+                  },
+                  error: (error, stackTrace) => Text(error.toString()),
+                  loading: () => const CircularProgressIndicator(),
+                ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class SearchItem extends StatelessWidget {
-  const SearchItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Gaps.v16,
-        const Padding(
-          padding: EdgeInsets.only(
-            left: Sizes.size16,
-          ),
-          child: Text(
-            'Search',
-            style: TextStyle(
-              fontSize: Sizes.size32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(
-            Sizes.size16,
-          ),
-          child: CupertinoSearchTextField(
-            placeholder: 'Search',
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) {
-              return const Test();
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class Test extends StatelessWidget {
+  final title;
+  final description;
+
   const Test({
     super.key,
+    this.title,
+    this.description,
   });
 
   @override
@@ -115,7 +125,8 @@ class Test extends StatelessWidget {
                       children: [
                         Row(children: [
                           Text(
-                            Faker().person.firstName(),
+                            // Faker().person.firstName(),
+                            title,
                             style: const TextStyle(
                               fontSize: Sizes.size16,
                               fontWeight: FontWeight.bold,
@@ -132,7 +143,8 @@ class Test extends StatelessWidget {
                         ]),
                         Gaps.v4,
                         Text(
-                          Faker().person.name(),
+                          // Faker().person.name(),
+                          description,
                           style: TextStyle(
                             fontSize: Sizes.size14,
                             color: Colors.grey.shade600,
